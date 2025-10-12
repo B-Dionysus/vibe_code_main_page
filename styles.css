@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    overflow: hidden;
+}
+.word-list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-right: 2px solid #333;
+    background-color: #fff;
+}
+.word-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    border-bottom: 2px solid #333;
+    font-size: 2vh;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+.chamber-container {
+    position: absolute;
+    left: 20%;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chamber {
+    position: relative;
+    width: 92%; /* Reduced by 8% */
+    height: 92%; /* Reduced by 8% */
+    max-width: 92vh; /* Reduced by 8% */
+    max-height: 92vh; /* Reduced by 8% */
+    border: 5px solid #333;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.5s;
+    z-index: 2;
+}
+.center-circle, .alternate-circle {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border: 3px solid #333;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    font-weight: bold;
+    color: #333;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s, opacity 0.5s;
+    text-align: center;
+    padding: 10px;
+}
+.center-circle {
+    z-index: 5;
+}
+.alternate-circle {
+    z-index: 4;
+}
+.slot {
+    position: absolute;
+    width: 15%;
+    height: 15%;
+    border: 2px solid #333;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vh;
+    font-weight: bold;
+    color: #333;
+    transform-origin: center;
+    z-index: 8;
+}
+.slot1 { top: 10%; left: 50%; transform: translate(-50%, -50%); }
+.slot2 { top: 50%; left: 10%; transform: translate(-50%, -50%); }
+.slot3 { bottom: 10%; left: 50%; transform: translate(-50%, 50%); }
+.slot4 { top: 50%; right: 10%; transform: translate(50%, -50%); }
