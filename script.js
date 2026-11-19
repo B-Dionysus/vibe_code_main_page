@@ -1,30 +1,22 @@
-const chamber = document.getElementById('chamber');
-const centerCircle = document.getElementById('centerCircle');
-const alternateCircle = document.getElementById('alternateCircle');
-const wordItems = document.querySelectorAll('.word-item');
-const slots = document.querySelectorAll('.slot');
-const blurbs = [
-    "Here we Alpha!",
-    "Bravo to you",
-    "Charlie was a young man",
-    "Delta Airlines Ain’t Great"
-];
-let isCenterVisible = true;
-wordItems.forEach((item, index) => {
-    item.addEventListener('mouseenter', () => {
-        chamber.style.transform = "rotate(" + (90 * index) + "deg)";
-        centerCircle.style.transform = "translate(-50%, -50%) rotate(" + (-90 * index) + "deg)";
-        alternateCircle.style.transform = "translate(-50%, -50%) rotate(" + (-90 * index) + "deg)";
-        slots.forEach((s) => {
-            s.querySelector('.word').style.transform = "rotate(" + (-90 * index) + "deg)";
-        });
-        if (isCenterVisible) {
-            centerCircle.style.opacity = 0;
-            alternateCircle.textContent = blurbs[index];
-        } else {
-            centerCircle.style.opacity = 1;
-            centerCircle.textContent = blurbs[index];
-        }
-        isCenterVisible = !isCenterVisible;
+const navigation = document.querySelectorAll('.nav-item');
+const panels = document.querySelectorAll('.content-panel');
+const chambers = document.querySelectorAll('.chamber');
+const cylinder = document.querySelector('.cylinder');
+
+navigation.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    navigation.forEach((item, itemIndex) => {
+      const selected = itemIndex === index;
+      item.classList.toggle('is-active', selected);
+      item.setAttribute('aria-pressed', String(selected));
+      chambers[itemIndex].classList.toggle('is-active', selected);
     });
+
+    panels.forEach((panel) => {
+      panel.hidden = panel.id !== button.dataset.section;
+    });
+
+    cylinder.style.transform = `rotate(${-90 * index}deg)`;
+    document.querySelector('.center-content').scrollTop = 0;
+  });
 });
