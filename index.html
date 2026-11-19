@@ -12,18 +12,16 @@
 <body>
   <div class="page-shell">
     <header class="masthead">
-      <a class="brand" href="index.html" aria-label="Six by Nine home">
+      <div class="brand">
         <span class="brand-mark" aria-hidden="true">6<span>×</span>9</span>
         <span class="brand-name">SIX BY NINE <small>THE PERSONAL SITE OF BENJAMIN DIONYSUS</small></span>
-      </a>
-      <span class="masthead-note">A LITTLE BIT OF EVERYTHING <span>✳</span></span>
+      </div>
     </header>
 
     <main class="layout">
       <aside class="sidebar">
-        <p class="eyebrow"><span class="tiny-line"></span> THE INDEX</p>
-        <h1>Many interests.<br><em>One cylinder.</em></h1>
-        <p class="sidebar-intro">A collection of things I make, do, and keep coming back to.</p>
+        <p class="eyebrow"><span class="tiny-line"></span> SECTIONS</p>
+        <h1>Benjamin Dionysus</h1>
 
         <nav class="section-nav" aria-label="Explore the site">
           <button type="button" class="nav-item is-active" data-section="about" aria-pressed="true">
@@ -39,66 +37,60 @@
             <span class="nav-number">04</span><span class="nav-label">Leatherworking</span><span class="nav-arrow" aria-hidden="true">↗</span>
           </button>
         </nav>
-        <p class="sidebar-footer"><span class="status-dot"></span> MADE WITH CURIOSITY <span> / </span> CHICAGO, IL</p>
       </aside>
 
       <div class="stage">
-        <div class="stage-topline"><span>PERSONAL ARCHIVE <span class="muted"> / </span> EST. WHENEVER</span><span>SELECT A CHAMBER <span class="accent">↘</span></span></div>
         <div class="barrel">
-          <div class="cylinder" aria-hidden="true">
+          <div class="cylinder">
             <div class="cylinder-inner">
-              <span class="chamber chamber-1 is-active"><span>01</span></span>
-              <span class="chamber chamber-2"><span>02</span></span>
-              <span class="chamber chamber-3"><span>03</span></span>
-              <span class="chamber chamber-4"><span>04</span></span>
-              <span class="bolt bolt-1"></span><span class="bolt bolt-2"></span>
-              <span class="bolt bolt-3"></span><span class="bolt bolt-4"></span>
+              <button type="button" class="chamber chamber-1 is-active" data-section="about" aria-label="About Me" aria-pressed="true"><span>01</span></button>
+              <button type="button" class="chamber chamber-2" data-section="coding" aria-label="Coding" aria-pressed="false"><span>02</span></button>
+              <button type="button" class="chamber chamber-3" data-section="music" aria-label="Music" aria-pressed="false"><span>03</span></button>
+              <button type="button" class="chamber chamber-4" data-section="leatherworking" aria-label="Leatherworking" aria-pressed="false"><span>04</span></button>
+              <span class="bolt bolt-1" aria-hidden="true"></span><span class="bolt bolt-2" aria-hidden="true"></span>
+              <span class="bolt bolt-3" aria-hidden="true"></span><span class="bolt bolt-4" aria-hidden="true"></span>
             </div>
           </div>
 
           <div class="center">
             <div class="center-content" aria-live="polite">
               <section class="content-panel" id="about">
-                <p class="panel-kicker"><span>01 / 04</span> &nbsp; THE PERSON</p>
-                <h2>Well, hello<span class="accent">.</span></h2>
+                <p class="panel-kicker"><span>01</span> &nbsp; ABOUT ME</p>
+                <h2>About Me<span class="accent">.</span></h2>
                 <p class="panel-lead">I'm Benjamin Dionysus.</p>
-                <p>I'm a Chicago-based full-stack developer working with Rails. I like making things, whether that's software, music, or something with my hands.</p>
-                <a class="text-link" href="https://github.com/B-Dionysus">MORE ON GITHUB <span aria-hidden="true">↗</span></a>
+                <p>I'm a Chicago-based full-stack developer working with Rails. My interests include music, microcontrollers, and leatherworking.</p>
+                <a class="text-link" href="https://github.com/B-Dionysus" target="_blank" rel="noopener noreferrer">GITHUB <span aria-hidden="true">↗</span></a>
               </section>
 
               <section class="content-panel" id="coding" hidden>
-                <p class="panel-kicker"><span>02 / 04</span> &nbsp; SELECTED WORK</p>
-                <h2>Things I've built<span class="accent">.</span></h2>
+                <p class="panel-kicker"><span>02</span> &nbsp; SELECTED PROJECTS</p>
+                <h2>Coding<span class="accent">.</span></h2>
                 <div class="project-list">
-                  <a class="project" href="https://github.com/B-Dionysus/Osteolater"><span><strong>Osteolator</strong><small>An Arduino-powered sampler in a skull.</small></span><span aria-hidden="true">↗</span></a>
-                  <a class="project" href="https://github.com/B-Dionysus/lifeline"><span><strong>Lifeline</strong><small>A personal timeline, organized by tags.</small></span><span aria-hidden="true">↗</span></a>
-                  <a class="project" href="https://github.com/B-Dionysus/melodyCreator"><span><strong>Melody Creator</strong><small>Random melodies for sight-reading practice.</small></span><span aria-hidden="true">↗</span></a>
+                  <a class="project" href="https://github.com/B-Dionysus/Osteolater" target="_blank" rel="noopener noreferrer"><span><strong>Osteolator</strong><small>An Arduino-powered sampler in a skull.</small></span><span aria-hidden="true">↗</span></a>
+                  <a class="project" href="https://github.com/B-Dionysus/lifeline" target="_blank" rel="noopener noreferrer"><span><strong>Lifeline</strong><small>A personal timeline, organized by tags.</small></span><span aria-hidden="true">↗</span></a>
+                  <a class="project" href="https://github.com/B-Dionysus/melodyCreator" target="_blank" rel="noopener noreferrer"><span><strong>Melody Creator</strong><small>Random melodies for sight-reading practice.</small></span><span aria-hidden="true">↗</span></a>
                 </div>
-                <a class="text-link" href="https://github.com/B-Dionysus?tab=repositories">ALL PROJECTS <span aria-hidden="true">↗</span></a>
+                <a class="text-link" href="https://github.com/B-Dionysus?tab=repositories" target="_blank" rel="noopener noreferrer">ALL PROJECTS <span aria-hidden="true">↗</span></a>
               </section>
 
               <section class="content-panel" id="music" hidden>
-                <p class="panel-kicker"><span>03 / 04</span> &nbsp; SOUND &amp; SUCH</p>
-                <h2>Stay tuned<span class="accent">.</span></h2>
-                <p class="panel-lead">There's more to come.</p>
-                <p>The music section is still in the works. Check back later for sounds, projects, and whatever else finds its way here.</p>
-                <span class="coming-soon"><span class="status-dot"></span> TO BE DETERMINED</span>
+                <p class="panel-kicker"><span>03</span> &nbsp; MUSIC</p>
+                <h2>Music<span class="accent">.</span></h2>
+                <p>Music projects and recordings will be added here.</p>
               </section>
 
               <section class="content-panel" id="leatherworking" hidden>
-                <p class="panel-kicker"><span>04 / 04</span> &nbsp; MADE BY HAND</p>
-                <h2>Another face<span class="accent">.</span></h2>
-                <p class="panel-lead">Masks, made by hand.</p>
-                <p>Explore a gallery of my masks, from skulls and creatures to more mysterious faces. Select a mask in the gallery to see it up close.</p>
-                <a class="text-link" href="https://insanetechnology.com/~damien/sixbynine/masks/">EXPLORE THE MASKS <span aria-hidden="true">↗</span></a>
+                <p class="panel-kicker"><span>04</span> &nbsp; LEATHERWORKING</p>
+                <h2>Leatherworking<span class="accent">.</span></h2>
+                <p>A gallery of my masks, including skulls, creatures, and other designs. Select a mask in the gallery to see a larger image.</p>
+                <a class="text-link" href="https://insanetechnology.com/~damien/sixbynine/masks/" target="_blank" rel="noopener noreferrer">MASK GALLERY <span aria-hidden="true">↗</span></a>
               </section>
             </div>
           </div>
         </div>
-        <div class="stage-bottomline"><span>FOUR CHAMBERS. FOUR PURSUITS.</span><span>6 × 9 <span class="muted"> / </span> 42</span></div>
       </div>
     </main>
-    <footer class="footer"><span>BENJAMIN DIONYSUS</span><span>BUILT TO BE EXPLORED <span class="accent">✳</span></span></footer>
+    <footer class="footer"><span>BENJAMIN DIONYSUS</span><span>CHICAGO, IL</span></footer>
   </div>
 </body>
 </html>
