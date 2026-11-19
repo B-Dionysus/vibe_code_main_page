@@ -2,10 +2,9 @@ const navigation = document.querySelectorAll('.nav-item');
 const panels = document.querySelectorAll('.content-panel');
 const chambers = document.querySelectorAll('.chamber');
 const cylinder = document.querySelector('.cylinder');
-const barrel = document.querySelector('.barrel');
 const centerContent = document.querySelector('.center-content');
 let selectedSection = 'about';
-let lastHoverPosition = null;
+let lastPointerPosition = null;
 
 function selectSection(section) {
   const index = Array.from(navigation).findIndex((item) => item.dataset.section === section);
@@ -22,7 +21,7 @@ function selectSection(section) {
     panel.hidden = panel.id !== section;
   });
 
-  cylinder.style.transform = `rotate(${-360 * index / navigation.length}deg)`;
+  cylinder.style.setProperty('--rotation', `${-360 * index / navigation.length}deg`);
   centerContent.scrollTop = 0;
 }
 
@@ -32,15 +31,13 @@ navigation.forEach((button) => {
 
 chambers.forEach((button) => {
   button.addEventListener('click', () => selectSection(button.dataset.section));
-  button.addEventListener('pointerover', (event) => {
-    if (event.pointerType === 'touch') return;
-    // Rotation can move another chamber under a stationary pointer.
-    if (lastHoverPosition && lastHoverPosition.x === event.clientX && lastHoverPosition.y === event.clientY) return;
-    lastHoverPosition = { x: event.clientX, y: event.clientY };
-    selectSection(button.dataset.section);
-  });
 });
 
-barrel.addEventListener('pointerleave', () => {
-  lastHoverPosition = null;
+document.addEventListener('pointermove', (event) => {
+  if (event.pointerType === 'touch') return;
+  // Only pointer movement, not a chamber rotating underneath it, selects a section.
+  if (lastPointerPosition && lastPointerPosition.x === event.clientX && lastPointerPosition.y === event.clientY) return;
+  lastPointerPosition = { x: event.clientX, y: event.clientY };
+  const chamber = event.target instanceof Element ? event.target.closest('.chamber') : null;
+  if (chamber) selectSection(chamber.dataset.section);
 });
