@@ -52,20 +52,24 @@ h1 { margin-bottom: 19px; font: 400 clamp(29px, 3.1vw, 46px)/1.13 Georgia, serif
 .stage { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; padding: 32px 0 30px 5%; overflow: hidden; }
 .accent { color: var(--brass); }
 .barrel { position: relative; width: min(100%, 700px, 73vh); aspect-ratio: 1; margin: 24px auto; }
-.cylinder {
-  --rotation: 0deg;
-  --rotation-timing: 1.6s cubic-bezier(.22,.7,.2,1);
+.barrel::before {
+  content: "";
   position: absolute; inset: 0; border: 1px solid #77715f; border-radius: 50%;
   background: repeating-radial-gradient(circle, transparent 0 2px, #ffffff05 3px, transparent 4px),
     radial-gradient(circle at 35% 25%, #827b68, #4a493f 48%, #242520 75%, #11120f 100%);
   box-shadow: 0 30px 70px #0009, inset 0 0 0 7px #24251f, inset 0 0 0 9px #8f8873, inset 0 0 0 14px #35362f;
+}
+.cylinder {
+  --rotation: 0deg;
+  --rotation-timing: 1.6s cubic-bezier(.22,.7,.2,1);
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
   transform: rotate(var(--rotation));
   transition: transform var(--rotation-timing);
 }
 .cylinder-inner { position: absolute; inset: 5%; border: 1px solid #c0b59b38; border-radius: 50%; box-shadow: inset 0 0 25px #0009; }
 .chamber {
   position: absolute; display: grid; place-items: center; width: 17%; aspect-ratio: 1; border-radius: 50%;
-  border: 3px solid #777260; color: #777064; font: 10px Georgia, serif; cursor: pointer;
+  border: 3px solid #777260; color: #c1b6a2; font: 10px Georgia, serif; cursor: pointer; pointer-events: auto;
   background: radial-gradient(circle at 42% 38%, #30302a 0, #121310 60%, #070806 100%);
   box-shadow: 0 2px 2px #c4b99b55, inset 0 7px 12px #000, 0 0 0 3px #282922;
   transition: border-color .3s, color .3s;
@@ -135,7 +139,7 @@ h2 { margin-bottom: 15px; font: 400 clamp(25px, 3vw, 42px)/1.05 Georgia, serif; 
   .stage { padding: 34px 0 30px; overflow: visible; }
   .barrel { width: min(100%, 500px); margin: 24px auto; }
   .center { inset: 15%; }
-  .center-content { width: 76%; max-height: 83%; }
+  .center-content { width: 65%; max-height: 60%; }
   h2 { font-size: clamp(23px, 6vw, 32px); margin-bottom: 10px; }
   .panel-kicker { margin-bottom: 10px; }
   .content-panel p:not(.panel-kicker) { font-size: 11px; line-height: 1.5; margin-bottom: 8px; }
@@ -147,7 +151,7 @@ h2 { margin-bottom: 15px; font: 400 clamp(25px, 3vw, 42px)/1.05 Georgia, serif; 
 @media (max-width: 380px) {
   .barrel { width: 100%; }
   .center { inset: 12%; }
-  .center-content { width: 78%; max-height: 84%; }
+  .center-content { width: 60%; max-height: 50%; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }

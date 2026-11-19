@@ -30,6 +30,8 @@ function setup() {
   const cylinder = new Element('cylinder');
   const centerContent = new Element('center');
   const listeners = {};
+  const timers = new Map();
+  let nextTimer = 0;
   const document = {
     querySelectorAll(selector) {
       return { '.nav-item': navigation, '.chamber': chambers, '.content-panel': panels }[selector];
@@ -39,32 +41,43 @@ function setup() {
     },
     addEventListener(type, handler) { listeners[type] = handler; }
   };
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'script.js'), 'utf8'), { document, Element });
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', 'script.js'), 'utf8'), {
+    document, Element, getComputedStyle: () => ({ transitionDuration: '1.6s' }),
+    setTimeout: (callback) => { const id = ++nextTimer; timers.set(id, callback); return id; },
+    clearTimeout: (id) => timers.delete(id)
+  });
 
   function move(target, x, y, pointerType = 'mouse') {
     listeners.pointermove({ target, clientX: x, clientY: y, pointerType });
   }
   function selected() { return panels.find((panel) => !panel.hidden).id; }
-  return { navigation, chambers, cylinder, move, selected };
+  function finishRotation() {
+    for (const [id, callback] of timers) { timers.delete(id); callback(); }
+  }
+  return { navigation, chambers, cylinder, move, selected, finishRotation };
 }
 
 test('a chamber moving under a stationary pointer does not change the selection', () => {
-  const { chambers, move, selected } = setup();
+  const { chambers, move, selected, finishRotation } = setup();
   move(chambers[1], 100, 100);
   assert.equal(selected(), 'coding');
   move(chambers[2], 100, 100);
-  move(chambers[3], 100, 100);
+  move(chambers[3], 101, 100);
   assert.equal(selected(), 'coding');
-  move(chambers[2], 101, 100);
+  finishRotation();
+  move(chambers[3], 101, 100);
+  assert.equal(selected(), 'coding');
+  move(chambers[2], 102, 100);
   assert.equal(selected(), 'music');
 });
 
 test('sidebar selection does not cause a stationary pointer to select a passing chamber', () => {
-  const { navigation, chambers, move, selected } = setup();
+  const { navigation, chambers, move, selected, finishRotation } = setup();
   move(navigation[0], 50, 50);
   navigation[4].listeners.click();
   move(chambers[1], 50, 50);
   assert.equal(selected(), 'lighting');
+  finishRotation();
   move(chambers[1], 51, 50);
   assert.equal(selected(), 'coding');
 });

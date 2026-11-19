@@ -5,6 +5,8 @@ const cylinder = document.querySelector('.cylinder');
 const centerContent = document.querySelector('.center-content');
 let selectedSection = 'about';
 let lastPointerPosition = null;
+let rotationTimer;
+let rotationInProgress = false;
 
 function selectSection(section) {
   const index = Array.from(navigation).findIndex((item) => item.dataset.section === section);
@@ -21,6 +23,11 @@ function selectSection(section) {
     panel.hidden = panel.id !== section;
   });
 
+  rotationInProgress = true;
+  clearTimeout(rotationTimer);
+  const duration = getComputedStyle(cylinder).transitionDuration;
+  const milliseconds = parseFloat(duration) * (duration.endsWith('ms') ? 1 : 1000);
+  rotationTimer = setTimeout(() => { rotationInProgress = false; }, milliseconds + 50);
   cylinder.style.setProperty('--rotation', `${-360 * index / navigation.length}deg`);
   centerContent.scrollTop = 0;
 }
@@ -38,6 +45,7 @@ document.addEventListener('pointermove', (event) => {
   // Only pointer movement, not a chamber rotating underneath it, selects a section.
   if (lastPointerPosition && lastPointerPosition.x === event.clientX && lastPointerPosition.y === event.clientY) return;
   lastPointerPosition = { x: event.clientX, y: event.clientY };
+  if (rotationInProgress) return;
   const chamber = event.target instanceof Element ? event.target.closest('.chamber') : null;
   if (chamber) selectSection(chamber.dataset.section);
 });
